@@ -1,0 +1,125 @@
+import type { Resource, ResourceCategory } from '@/types';
+
+// ============================================================
+// TRISTARC — E-Resources Mock Data
+// ============================================================
+
+export const resources: Resource[] = [
+  {
+    id: 'res-001',
+    title: 'Introduction to Survey Methodology',
+    category: 'Study Materials',
+    description: 'A comprehensive guide to survey methodology covering design principles, sampling, and administration techniques for research professionals.',
+    date: '2024-06-10',
+    fileType: 'PDF',
+    fileSize: '2.4 MB',
+    url: '#',
+    featured: true,
+  },
+  {
+    id: 'res-002',
+    title: 'Statistical Analysis with R — Beginner Guide',
+    category: 'Guides',
+    description: 'Step-by-step guide to getting started with R for statistical analysis. Covers installation, basic syntax, data types, and foundational statistical functions.',
+    date: '2024-05-20',
+    fileType: 'PDF',
+    fileSize: '3.1 MB',
+    url: '#',
+    featured: true,
+  },
+  {
+    id: 'res-003',
+    title: 'Research Ethics — Principles and Practice',
+    category: 'Research Documents',
+    description: 'An essential reference document covering research ethics principles, informed consent, data privacy, and responsible research conduct.',
+    date: '2024-04-15',
+    fileType: 'PDF',
+    fileSize: '1.8 MB',
+    url: '#',
+  },
+  {
+    id: 'res-004',
+    title: 'Data Visualization Best Practices',
+    category: 'Guides',
+    description: 'Practical guidelines on creating clear, accurate, and impactful data visualizations for research and analytics communication.',
+    date: '2024-03-28',
+    fileType: 'PDF',
+    fileSize: '4.2 MB',
+    url: '#',
+    featured: true,
+  },
+  {
+    id: 'res-005',
+    title: 'Sample Questionnaire Templates for Social Research',
+    category: 'Study Materials',
+    description: 'A collection of ready-to-use questionnaire templates for social research studies, including Likert scales and demographic modules.',
+    date: '2024-03-10',
+    fileType: 'DOCX',
+    fileSize: '0.9 MB',
+    url: '#',
+  },
+  {
+    id: 'res-006',
+    title: 'Understanding Impact Assessment',
+    category: 'Research Documents',
+    description: 'Overview of impact assessment frameworks including theory of change, logical framework, and results-based management approaches.',
+    date: '2024-02-22',
+    fileType: 'PDF',
+    fileSize: '2.0 MB',
+    url: '#',
+  },
+  {
+    id: 'res-007',
+    title: 'Annual Research Trends Report — Sample',
+    category: 'Reports',
+    description: 'Sample annual report illustrating research trends and methodology updates across social science and analytics sectors.',
+    date: '2024-01-15',
+    fileType: 'PDF',
+    fileSize: '5.6 MB',
+    url: '#',
+  },
+  {
+    id: 'res-008',
+    title: 'SPSS Quick Reference Card',
+    category: 'Statistical Resources',
+    description: 'Quick reference guide for SPSS users covering common procedures, menus, and statistical output interpretation.',
+    date: '2023-12-05',
+    fileType: 'PDF',
+    fileSize: '0.5 MB',
+    url: '#',
+  },
+  {
+    id: 'res-009',
+    title: 'Political Research Methodology — Overview',
+    category: 'Articles',
+    description: 'Academic article exploring methodological considerations in political research, including sampling challenges and bias mitigation.',
+    date: '2023-11-18',
+    fileType: 'PDF',
+    fileSize: '1.2 MB',
+    url: '#',
+  },
+  {
+    id: 'res-010',
+    title: 'Sampling Techniques — Illustrated Guide',
+    category: 'Statistical Resources',
+    description: 'Visual guide to probability and non-probability sampling techniques with worked examples and decision trees.',
+    date: '2023-10-30',
+    fileType: 'PDF',
+    fileSize: '3.7 MB',
+    url: '#',
+  },
+];
+
+export const resourceCategories: ResourceCategory[] = [
+  'Research Documents',
+  'Study Materials',
+  'Reports',
+  'Articles',
+  'Statistical Resources',
+  'Guides',
+  'PDF Resources',
+  'Other Educational Resources',
+];
+
+export const getFeaturedResources = (): Resource[] =>
+  resources.filter((r) => r.featured);
