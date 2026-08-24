@@ -4,7 +4,7 @@ import axios from 'axios';
 // TRISTARC   Axios API Instance (Phase 2   Real Backend)
 // ============================================================
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: BASE_URL,
