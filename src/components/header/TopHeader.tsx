@@ -10,7 +10,10 @@ interface TopHeaderProps {
 }
 
 export const TopHeader: React.FC<TopHeaderProps> = ({
-  logoSrc = 'src/assets/logo.jpeg',
+  // IMPORTANT: must be an absolute path starting with '/' so it works in
+  // both local dev AND the production build served from Hostinger.
+  // 'src/assets/logo.jpeg' is a dev-only relative path — never use it here.
+  logoSrc = '/images/tristarc-logo.png',
 }) => {
   const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const navigate = useNavigate();
@@ -30,7 +33,9 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   return (
     <div className="bg-white border-b border-tristarc-border">
       <div className="container-main">
-        <div className="flex items-center justify-between py-3 gap-4">
+
+        {/* ── Desktop Layout (sm and above) ───────────────────────────────── */}
+        <div className="hidden sm:flex items-center justify-between py-3 gap-4">
           {/* LEFT — Logo */}
           <Link
             to="/"
@@ -48,7 +53,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           </Link>
 
           {/* CENTER — Institute Name */}
-          <div className="flex-1 hidden sm:block text-center">
+          <div className="flex-1 text-center">
             <h1 className="text-primary-dark font-bold text-sm sm:text-base lg:text-lg xl:text-xl leading-tight tracking-tight">
               TIRUPATI RAO INSTITUTE OF STATISTICAL
             </h1>
@@ -60,26 +65,24 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           {/* RIGHT — Auth Buttons */}
           <div className="flex items-center gap-2 shrink-0">
             {!isAuthenticated ? (
-              /* Guest: Login + Signup */
               <>
                 <Link
                   to="/login"
                   id="header-login-btn"
-                  className="btn-primary btn-sm hidden sm:inline-flex"
+                  className="btn-primary btn-sm"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
                   id="header-signup-btn"
-                  className="btn-accent btn-sm hidden sm:inline-flex"
+                  className="btn-accent btn-sm"
                 >
                   Sign Up
                 </Link>
               </>
             ) : (
-              /* Authenticated: user avatar + dropdown */
-              <div className="relative hidden sm:block" ref={dropdownRef}>
+              <div className="relative" ref={dropdownRef}>
                 <button
                   id="header-user-btn"
                   onClick={() => setDropdownOpen((v) => !v)}
@@ -111,7 +114,6 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
                       transition={{ duration: 0.15 }}
                       className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-mega border border-tristarc-border z-50 overflow-hidden"
                     >
-                      {/* User info header */}
                       <div className="px-4 py-3 bg-primary-light border-b border-tristarc-border">
                         <p className="text-sm font-bold text-tristarc-text-primary truncate">
                           {getFullName(user)}
@@ -123,8 +125,6 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
                           </span>
                         )}
                       </div>
-
-                      {/* Menu items */}
                       <div className="py-1.5">
                         {isAdmin ? (
                           <Link
@@ -164,15 +164,35 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           </div>
         </div>
 
-        {/* Mobile — Institute Name (below logo row) */}
-        <div className="sm:hidden pb-2 text-center">
-          <p className="text-primary-dark font-bold text-xs leading-tight">
-            TIRUPATI RAO INSTITUTE OF STATISTICAL
-          </p>
-          <p className="text-primary font-semibold text-xs leading-tight">
-            TRAINING, ANALYTICS, RESEARCH &amp; CONSULTANCY
-          </p>
+        {/* ── Mobile Layout (below sm) ─────────────────────────────────────── */}
+        <div className="flex sm:hidden items-center justify-between py-2 gap-3">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+            aria-label="TRISTARC — Home"
+          >
+            <img
+              src={logoSrc}
+              alt="TRISTARC Logo"
+              className="h-12 w-auto object-contain"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          </Link>
+
+          {/* Institute Name — centered */}
+          <div className="flex-1 text-center min-w-0">
+            <p className="text-primary-dark font-bold text-[10px] leading-tight tracking-tight truncate">
+              TIRUPATI RAO INSTITUTE OF STATISTICAL
+            </p>
+            <p className="text-primary font-semibold text-[9px] leading-tight truncate">
+              TRAINING, ANALYTICS, RESEARCH &amp; CONSULTANCY
+            </p>
+          </div>
         </div>
+
       </div>
     </div>
   );

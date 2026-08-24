@@ -63,7 +63,7 @@ export const Footer: React.FC = () => {
               <img
                 src="/images/tristarc-logo.png"
                 alt="TRISTARC Logo"
-                className="h-16 w-auto object-contain mb-4 filter brightness-0 invert"
+                className="h-16 w-auto object-contain mb-4 rounded-lg bg-white p-1"
                 onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
               />
             </Link>
