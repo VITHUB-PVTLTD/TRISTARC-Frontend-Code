@@ -40,7 +40,11 @@ const LoginPage: React.FC = () => {
         navigate('/dashboard');
       }
     } catch (e: any) {
-      setError(e?.response?.data?.message ?? 'Invalid email or password. Please try again.');
+      if (!e.response) {
+        setError('Unable to reach the server. Please check your internet connection or backend URL.');
+      } else {
+        setError(e?.response?.data?.message ?? 'Invalid email or password. Please try again.');
+      }
     }
   };
 
